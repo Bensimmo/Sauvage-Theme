@@ -109,6 +109,45 @@ $(document).ready(function() {
 
 	// Carousel
 	$('.carousel').carousel();
+	
+	//Category Mega Menu
+	function columnDicer() {
+		
+		// If all menu's have the same number of columns, set the value statically. 
+		var columnNum = 3;
+	
+		$('.menu-products').each(function(){
+	
+			var itemTotal = $('.first-col > .menu-li', this).length;
+			var spliceValue = itemTotal/columnNum;
+			var roundedVal = Math.floor(spliceValue);
+	
+			if ((roundedVal > 0 && roundedVal != 1) || itemTotal === columnNum )  {
+				var roundedVal = roundedVal - 1;
+			}
+	
+			// Ensure these values reflect the columnNum variable above. They're appended to all of the top level categories to split the menu items consistently.
+			$('<ul class="column second-col"></ul><ul class="column third-col"></ul>').insertAfter($('.dropdown-menu .first-col', this));
+			
+			$(".wrap-cat-drop-links", this).children().each(function(){
+				var elems = $('> .menu-li:gt(' + roundedVal + ')', this);
+				$(elems).appendTo($(this).next());
+			})
+	
+			// divide the menu item from the second last category into last category if it's empty. 
+			var lastColumn = $(".wrap-cat-drop-links > ul:last-child", this);
+			var secondLastColumn = lastColumn.prev();
+			var secondLastColumnCount = secondLastColumn.children().length;
+	
+			// Check if last column is empty and the second last column has more than 2 items.
+			if (lastColumn.children().length == 0 && secondLastColumnCount > 1){
+				var remaining = Math.floor(secondLastColumnCount / 2) - 1
+				var elems = $('> .menu-li:gt(' + remaining + ')', secondLastColumn)
+				$(elems).appendTo(lastColumn);
+			}
+		})
+	}
+	columnDicer();
 
 });
 
@@ -119,6 +158,21 @@ $(".btn-loads").click(function(){
 		$(pendingbutton).button("reset");
 	},3000);
 });
+
+// Alt image hover effect
+$('.wrapper-thumbnail .thumbnail-image')
+	.mouseover(imageSwap)
+	.mouseout(imageSwap);
+
+function imageSwap(){
+	var myImage = $(this).find('img.product-image');
+	newSRC = $(myImage).attr('data-altimg');
+	if(newSRC){
+		currentSRC = $(myImage).attr('src');
+		$(myImage).attr('src',newSRC);
+		$(myImage).attr('data-altimg',currentSRC);
+	}
+}
 
 // Fancybox
 $(document).ready(function() {

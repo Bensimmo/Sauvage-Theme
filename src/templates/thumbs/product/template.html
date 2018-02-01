@@ -1,0 +1,41 @@
+[%CACHE type:'gallery' id:'[@inventory_id@]'%]
+[%set [@altimg1@]%][%ASSET_URL type:'inventory' id:'[@inventory_id@]' thumb:'alt_1' /%][%/set%]
+[%if [@altimg1@] eq '/assets/na.gif'%][%set [@altimg1@]%][%/set%][%/if%]
+<article class="wrapper-thumbnail col-xs-8 col-sm-6 col-md-4 col-lg-3" role="article">
+	<div class="thumbnail" itemscope itemtype="http://schema.org/Product">
+		<meta itemprop="brand" content="[@brand@]"/>
+		<a href="[@URL@]" class="thumbnail-image [%IF [@thumb_1@]%]with-altimg[%/IF%]">
+			<img src="[%asset_url type:'product' thumb:'thumbL' id:'[@SKU@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]" class="product-image" alt="[@model@] image" rel="itmimg[@SKU@]" [%if [@thumb_1@]%]data-altimg="[@thumb_1@]"[%/if%]>
+		</a>
+		<div class="caption">
+			<h3 itemprop="name"><a href="[@URL@]" title="[@model@]">[%format type:'text' truemaxlength:'50' rmhtml:'1'%][@model@][%/FORMAT%]</a></h3>
+			<p class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer" title="[@model@] price">
+				[%if [@inpromo@]%]
+					Now&nbsp;[%if [@has_child@]%]from&nbsp;[%/if%]
+					<meta itemprop="priceValidUntil" content="[%format type:'date' format:'#Y-#M-#d'%][@promo_end@][%END format%]"/>
+					<span itemprop="price" content="[@promo_price@]">[%format type:'currency'%][@promo_price@][%/format%]</span>
+				[%else%]
+					[%if [@has_child@]%]From&nbsp;[%/if%]
+					<span itemprop="price" content="[@store_price@]">[%format type:'currency'%][@store_price@][%/format%]</span>
+				[%/if%]
+				<meta itemprop="priceCurrency" content="[@config:defaultcurrency@]">
+			</p>
+			[%tracking_code type:'Thumbnails' /%]
+			<!-- Purchase Logic -->
+			<!-- /Purchase Logic -->
+		</div>
+		<div class="savings-container">
+			[%if [@inpromo@]%]
+				<span class="label label-danger">On Sale</span>
+			[%/if%]
+			[%if [@save@] > 0 AND ![@has_child@] %]
+				<span class="label label-warning">
+				[%format type:'percent'%][@save@][%/format%] OFF</span>
+			[%/if%]
+			[%if [@save@] > 0%]
+				<span class="label label-default">RRP [%format type:'currency'%][@retail@][%/format%]</span>
+			[%/if%]
+		</div>
+	</div>
+</article>
+[%/CACHE%]
