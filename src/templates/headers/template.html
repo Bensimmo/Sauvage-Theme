@@ -39,7 +39,12 @@
 					<img class="logo" src="[@config:imageurl@]/website_logo.png?[@config:neto_css_version@]" alt="[@config:company_name@] Logo"/>
 				</a>
 			</div>
-			<div class="col-xs-12 col-sm-8">
+			<div class="hidden-xs col-sm-8" id="search-bar">
+				<form name="productsearch" method="get" action="/" role="search" aria-label="Product Search">
+					<input class="form-control ajax_search" value="[%nohtml%][%filter ID:'keywords'%][%/filter%][%/nohtml%]" id="name_search" autocomplete="off" name="kw" type="search" placeholder="Search" aria-label="Input Search"/>	
+				</form>
+			</div>
+			<div class="col-xs-12 col-sm-8" id="menu-items">
 				<nav class="navbar navbar-default" role="navigation" aria-label="Main Menu">
 					<div class="navbar-header">
 						<ul class="navigation-list list-inline visible-xs nMobileNav">
@@ -93,15 +98,11 @@
 			</div>
 			<div class="hidden-xs col-sm-2 text-right ut-links">
 				<div class="header-search">
-					<form name="productsearch" method="get" action="/" role="search" aria-label="Product Search">
-						<input type="hidden" name="rf" value="kw"/>
-						<div class="input-group">
-							<span class="input-group-btn">
-								<button data-toggle="collapse" href="#collapseSearch" type="submit" value="Search" class="btn btn-default" aria-label="Search Site"><i class="far fa-search"></i></button>
-							</span>
-						</div>
-						
-					</form>
+					<div class="input-group">
+						<span class="input-group-btn">
+							<button id="search-icon" type="submit" value="Search" class="btn btn-default" aria-label="Search Site"><i class="far fa-search"></i></button>
+						</span>
+					</div>
 				</div>
 				<ul class="hidden-xs account-icon">
 					<li class="lv1-li btn btn-default dropdown dropdown-hover"> <a href="[%url page:'account'/%]" [%if [@next_level@]%]class="dropdown-toggle btn-default" data-toggle="dropdown"[%else%]class="btn-default"[%/if%] aria-label="Account dropdown"><i class="far fa-user-alt"></i> </a>
@@ -146,13 +147,6 @@
 					</ul>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<form name="productsearch" method="get" action="/" role="search" aria-label="Product Search">
-				<div class="collapse col-sm-12" id="collapseSearch" >
-					<input class="form-control ajax_search" value="[%nohtml%][%filter ID:'keywords'%][%/filter%][%/nohtml%]" id="name_search" autocomplete="off" name="kw" type="search" placeholder="Search" aria-label="Input Search"/>
-				</div>
-			</form>
 		</div>
 	</div>
 </header>

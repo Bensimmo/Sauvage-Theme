@@ -2,7 +2,7 @@
 [%if [@config:show_home_ads@]%]
 </div>
 </div>
-	<div class="banner container-fluid">
+	<div class="hidden-xs banner container-fluid">
 		[%advert type:'text' template:'carousel' limit:'10' ad_group:'home-banner'%]
 			[%param *header%]
 				<section id="homepageCarousel" class="carousel slide" aria-label="Banner Images">
@@ -82,7 +82,7 @@
 [%advert type:'text' limit:'2' template:'home-middle-adverts' ad_group:'home-middle-adverts' sortby:'sortoder'%]
 	[%param *header%]
 	<section class="row row-padded" aria-label="Home Adverts">
-		<div class="col-xs-12">
+		<div class="col-xs-12 margin-bottom-adverts">
 			<div class="row">
 	[%/param%]
 	[%param *footer%]

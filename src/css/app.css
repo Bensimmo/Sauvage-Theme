@@ -2028,7 +2028,7 @@ pre code {
   margin-right: -15px;
 }
 
-@media (max-width:767px){
+@media (max-width:767px) {
   .row {
     margin-left: -5px;
     margin-right: -5px;
@@ -4260,7 +4260,7 @@ tbody.collapse.in {
   display: none;
   float: left;
   min-width: 160px;
-  padding:0px;
+  padding: 0px;
   margin: 2px 0 0;
   list-style: none;
   font-size: 14px;
@@ -4285,7 +4285,7 @@ tbody.collapse.in {
 
 .dropdown-menu>li>a {
   display: block;
-  text-transform:uppercase;
+  text-transform: uppercase;
   padding: 10px 20px;
   transition: all 0.2s;
   clear: both;
@@ -7699,6 +7699,7 @@ button.close {
     right: 40%;
     padding-bottom: 30px;
     text-align: left;
+    max-width: 500px;
   }
   .carousel-indicators {
     bottom: 20px;
@@ -8074,13 +8075,13 @@ button.close {
   display: inline-block;
 }
 
-#collapseSearch .form-control{
+.ajax_search.form-control {
   background-color: white;
   color: #24262d;
   padding: 10px;
   height: 50px;
   border-radius: 2px;
-  border:0px;
+  border: 0px;
 }
 
 button.btn.btn-default.collapsed:focus {
@@ -8718,7 +8719,6 @@ ul.imagelist li .imagethumb {
   width: 100%;
   border-color: rgba(0, 0, 0, 0.15);
   background-color: white;
-  margin-top: 33px !important;
 }
 
 .nsearchinput-pl.well ul li img {
@@ -10008,9 +10008,9 @@ ul.account-icon {
   height: 100%;
 }
 
-@media (max-width:767px){
-  .home-row-padding-left{
-    padding-bottom:15px;
+@media (max-width:767px) {
+  .home-row-padding-left {
+    padding-bottom: 15px;
   }
 }
 
@@ -10126,7 +10126,7 @@ input:focus {
 }
 
 .wrapper-footer>.container h4 {
-  padding-bottom: 6px;
+  margin-top: 15px;
   font-size: 16px;
   font-weight: bold;
 }
@@ -10284,14 +10284,25 @@ input:focus {
   padding: 0px;
 }
 
-.dropdown-menu.c_level2 li{
+.dropdown-menu.c_level2 li {
   border-bottom: 1px solid #f3f3f3;
-  position:relative;
+  position: relative;
 }
-.fa-layers-counter{
-    font-size: 12px;
-    right: -19px;
-    top: -12px;
-    -webkit-transform: scale(1);
-    transform: scale(1);
+
+.fa-layers-counter {
+  font-size: 12px;
+  right: -19px;
+  top: -12px;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.nsearchinput-pl.well {
+  margin-top: 53px !important;
+}
+
+@media (max-width: 767px){
+  .margin-bottom-adverts:first-child .col-xs-12{
+    margin-bottom:30px;
   }
+}

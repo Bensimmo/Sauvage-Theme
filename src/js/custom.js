@@ -174,6 +174,15 @@ function imageSwap(){
 	}
 }
 
+// Toggle between search bar and menu items.
+$('#search-bar').hide();
+
+$('#search-icon').on('click',function() 
+  {
+	$('#menu-items, #search-bar').toggle()
+  }
+);
+
 // Fancybox
 $(document).ready(function() {
 	$(".fancybox").fancybox();

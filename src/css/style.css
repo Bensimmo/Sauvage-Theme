@@ -427,11 +427,9 @@ fieldset[disabled] .btn-info.active {
 .container.bottom-footer{
 	background-image: url(/assets/webshop/background.jpg) /*{newsletter-section-background-image}*/;
 }
-
 .wrapper-header{
 	background-color: #141414 /*{header-background-colour}*/;
 }
-
 .fa-layers-counter{
 	background-color: Tomato /*{cart-quanity-background-colour}*/ ;
 }
