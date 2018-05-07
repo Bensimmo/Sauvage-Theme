@@ -8,8 +8,8 @@
 			$.addToWishList({
 				'class': 'wishlist_toggle',
 				'textclass': 'wishlist_text',
-				'htmlon': 'Remove From Wishlist',
-				'htmloff': 'Add To Wishlist',
+				'htmlon': '<i class="fa fa-star" aria-hidden="true"></i>',
+				'htmloff': '<i class="fa fa-star-o" aria-hidden="true"></i> Wishlist',
 				'tooltip_css': 'whltooltips'
 			});
 			// Ajax Add To Cart
@@ -35,8 +35,7 @@
 				'category_footer'	: '</ul>'
 			});
 		},
-
-// For child product multi-add to cart function
+		// For child product multi-add to cart function
 		checkValidQty: function() {
 			var found = 0;
 			$("#multiitemadd :input").each(function() {
@@ -52,7 +51,6 @@
 			}
 			return true;
 		},
-
 		modQtyByMulti: function(obj,act) {
 			var mul = 1;
 			var maxm;
@@ -86,125 +84,118 @@
 						cur = minm;
 					}
 				}
-
 				$('#qty'+objid).val(cur);
 			}
 		}
 	});
 })(jQuery);
 
+var nCustom = {
+	vars : {
+		focused : $('body'),
+		lastFocused : $('body')
+	},
+	funcs : {
+		// Capture the last item focused
+		updateFocused: function(){
+			nCustom.vars.lastFocused = nCustom.vars.focused;
+		},
+		// Place focus on popup
+		popupFocus: function(){
+			var popUp = document.getElementById('npopupDesc');
+			// Configures the observer
+			var config = {childList: true};
+			// Create an observer instance
+			var popUpObserver = new MutationObserver(function(mutations) {
+				mutations.forEach(function(mutation) {
+					// Initial observer
+					if(mutation.addedNodes["0"]){
+						nCustom.funcs.updateFocused();
+						// focus on the popup
+						$(popUp).attr('tabindex', '-1').focus();
+					}else{
+						$(popUp).attr('tabindex', '').blur();
+						// Observer closing popup
+						$(nCustom.vars.lastFocused).focus();
+					}
+				});
+			});
+			// Pass in the target node, as well as the observer options
+			if(popUp){ popUpObserver.observe(popUp, config);}
+		},
+		buttonLoading: function(){
+			var loadingText = $(this).attr('data-loading-text');
+			var originalText = $(this).html();
+			$(this).html(loadingText).addClass('disabled').prop('disabled', true);
+			var pendingButton = this;
+			setTimeout(function(){
+				$(pendingButton).html(originalText).removeClass('disabled').removeAttr('disabled');
+			}, 3000);
+		},
+		windowPopup: function(url, width, height) {
+			// Calculate the position of the popup so it’s centered on the screen.
+			var left = (screen.width / 2) - (width / 2),
+				top = (screen.height / 2) - (height / 2);
+			window.open(url,"","menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left);
+		},
+		// Will remove/add class from element
+		classToggle: function (element, css, type){
+			if(type){
+				type == 'add'
+					? $(element).addClass(css)
+					: $(element).removeClass(css)
+			}
+		}
+	}
+}
+
 $(document).ready(function() {
+	// Neto functionalty
+	$.initPageFuncs();
+	nCustom.funcs.popupFocus();
 	// Popup Credit Card CCV Description At Checkout
 	$("#card_ccv").fancybox();
-
 	// Popup Terms At Checkout
-	$("#terms").fancybox({
-		'width' : 850,
-		'height': 650
-	});
-
+	$("#terms").fancybox({ 'width' : 850,'height': 650});
 	// Jquery Ui Date Picker
 	$(".datepicker").datepicker({ dateFormat: "dd/mm/yy" });
-	$.initPageFuncs();
-
 	// Carousel
 	$('.carousel').carousel();
-	
-	//Category Mega Menu
-	function columnDicer() {
-		
-		// If all menu's have the same number of columns, set the value statically. 
-		var columnNum = 3;
-	
-		$('.menu-products').each(function(){
-	
-			var itemTotal = $('.first-col > .menu-li', this).length;
-			var spliceValue = itemTotal/columnNum;
-			var roundedVal = Math.floor(spliceValue);
-	
-			if ((roundedVal > 0 && roundedVal != 1) || itemTotal === columnNum )  {
-				var roundedVal = roundedVal - 1;
-			}
-	
-			// Ensure these values reflect the columnNum variable above. They're appended to all of the top level categories to split the menu items consistently.
-			$('<ul class="column second-col"></ul><ul class="column third-col"></ul>').insertAfter($('.dropdown-menu .first-col', this));
-			
-			$(".wrap-cat-drop-links", this).children().each(function(){
-				var elems = $('> .menu-li:gt(' + roundedVal + ')', this);
-				$(elems).appendTo($(this).next());
-			})
-	
-			// divide the menu item from the second last category into last category if it's empty. 
-			var lastColumn = $(".wrap-cat-drop-links > ul:last-child", this);
-			var secondLastColumn = lastColumn.prev();
-			var secondLastColumnCount = secondLastColumn.children().length;
-	
-			// Check if last column is empty and the second last column has more than 2 items.
-			if (lastColumn.children().length == 0 && secondLastColumnCount > 1){
-				var remaining = Math.floor(secondLastColumnCount / 2) - 1
-				var elems = $('> .menu-li:gt(' + remaining + ')', secondLastColumn)
-				$(elems).appendTo(lastColumn);
-			}
-		})
-	}
-	columnDicer();
-
-});
-
-$(".btn-loads").click(function(){
-	$(this).button("loading");
-	var pendingbutton=this;
-	setTimeout(function(){
-		$(pendingbutton).button("reset");
-	},3000);
-});
-
-// Alt image hover effect
-$('.wrapper-thumbnail .thumbnail-image')
-	.mouseover(imageSwap)
-	.mouseout(imageSwap);
-
-function imageSwap(){
-	var myImage = $(this).find('img.product-image');
-	newSRC = $(myImage).attr('data-altimg');
-	if(newSRC){
-		currentSRC = $(myImage).attr('src');
-		$(myImage).attr('src',newSRC);
-		$(myImage).attr('data-altimg',currentSRC);
-	}
-}
-
-// Toggle between search bar and menu items.
-$('#search-bar').hide();
-
-$('#search-icon').on('click',function() 
-  {
-	$('#menu-items, #search-bar').toggle()
-  }
-);
-
-// Fancybox
-$(document).ready(function() {
+	// Fancybox
 	$(".fancybox").fancybox();
+	// Sticky Nav
+	$(window).scroll(function () {
+		if ($(window).scrollTop() >= 50) {
+			$('.wrapper-header').css('background','white');
+		} else {
+			$('.wrapper-header').css('background','transparent');
+		}
+		});
 });
-
 // Tooltip
 $('.tipsy').tooltip({trigger:'hover',placement:'bottom'});
-
-// Who needs AddThis?
-function windowPopup(url, width, height) {
-	// Calculate the position of the popup so
-	// it’s centered on the screen.
-	var left = (screen.width / 2) - (width / 2),
-		top = (screen.height / 2) - (height / 2);
-	window.open(url,"","menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left);
-}
+// Capture the current element the user focused in
+$(document).on('focusin', function(){
+	nCustom.vars.focused = document.activeElement;
+});
+// Btn loading state
+$(document).on("click", ".btn-loads", nCustom.funcs.buttonLoading);
+// Social media share
 $(".js-social-share").on("click", function(e) {
 	e.preventDefault();
-	windowPopup($(this).attr("href"), 500, 300);
+	nCustom.funcs.windowPopup($(this).attr("href"), 500, 300);
 });
-
+// Mobile menu
 $('.nToggleMenu').click(function(){
 	var toggleTarget = $(this).attr('data-target')
 	$(toggleTarget).slideToggle();
+});
+// Invoice page
+$("#cart_items").on("click", "[data-body-add]", function(e){
+	e.preventDefault();
+	nCustom.funcs.classToggle('body', $(this).attr('data-body-add'), 'add');
+});
+$("#cart_items").on("click", "[data-body-remove]", function(e){
+	e.preventDefault();
+	nCustom.funcs.classToggle('body', $(this).attr('data-body-remove'), 'remove');
 });

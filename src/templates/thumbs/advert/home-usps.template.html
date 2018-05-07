@@ -1,0 +1,10 @@
+<div class="text-center">
+    [%if [@headline@] or [@description@] or [@linktext@]%]
+    <a href="[@url@]">
+		<div class="home-usps-each">
+			[%if [@description@]%]<p><i class="fal [@description@]"></i></p>[%/if%]
+			[%if [@headline@]%]<h4>[@headline@]</h4>[%/if%]
+        </div>
+    </a>
+	[%/if%]
+</div>

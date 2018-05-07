@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Roboto:300,400,700');
+
+
+.desktop-right-menu-items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > ul{
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    
+        li{
+            float: left;
+            a, .fa{
+                color: #2d2d2d !important;
+            }
+        }
+        .btn{
+            background: transparent;
+        }
+    }
+    .dropdown-toggle::after{
+        display: none;
+    }
+}  
+
+.wrapper-header .wrapper-logo {
+    display: flex;
+    align-items: center;
+    padding-left: 30px !important;
+    padding-right: 0px !important;
+}
+
+
+
+.container-fluid.wrapper-header{
+    position: fixed;
+    z-index: 99;
+    background: transparent;
+    transition: 0.3s ease;
+    li.nav-item{
+        font-size: 12px;
+        font-weight: lighter;
+    }
+}
+
+#homepageCarousel {
+    .carousel-item{
+        width: 100vw;
+        height: 100vh;
+        background-size: cover;
+    }
+    .carousel-caption{
+        text-shadow: 0px 0px 0px;
+        text-align: left;
+        top:40%;
+        width: 35%;
+        p{
+            margin-bottom: 0px;
+            color: #bd9a32;
+            letter-spacing: 3px;
+        }
+        h2{
+            font-family: 'Playfair Display', serif;
+            font-size: 50px;
+            font-style: italic;
+            letter-spacing: 4px;
+            color: #2d2d2d;
+        }
+        a.btn{
+            border: 2px solid #2d2d2d;
+            background-color: transparent;
+            border-radius: 0px;
+            color: #2d2d2d;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-top: 20px;
+            transition: 0.2s all;
+        }
+        a.btn:hover{
+                background-color: #2d2d2d !important;
+                color: #eeeeee !important;
+            
+        }
+    }
+}
+
+#header-cart .fa-layers-counter {
+    background-color: #bd9a32;
+    right: -11px;
+    top: -9px;
+    -webkit-transform: scale(.75);
+    transform: scale(0.75);
+    font-weight: lighter;
+}
+
+.navbar-expand-md .navbar-nav .nav-link{
+    transition: 0.2s all;
+}
+.navbar-expand-md .navbar-nav .nav-link:hover{
+    color: #bd9a32; 
+}
+
+.n-responsive-content{
+    padding: 100px 0px;
+}
+
+.home-usps{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    a{
+        text-decoration: none;
+    }
+    .home-usps-each{
+        padding: 0px 15px;
+        .svg-inline--fa{
+            color: #bd9a32;
+            font-size: 31px;
+        }
+        h4{
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+        }
+    }
+}
+   
