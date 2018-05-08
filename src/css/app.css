@@ -113,12 +113,12 @@ sup {
   top: -.5em; }
 
 a {
-  color: #2d2d2d;
+  color: #333333;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects; }
   a:hover {
-    color: #070707;
+    color: #0d0d0d;
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
@@ -2582,10 +2582,10 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #2d2d2d;
+  color: #333333;
   background-color: transparent; }
   .btn-link:hover {
-    color: #070707;
+    color: #0d0d0d;
     text-decoration: underline;
     background-color: transparent;
     border-color: transparent; }
@@ -3971,12 +3971,12 @@ input[type="button"].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #2d2d2d;
+  color: #333333;
   background-color: #fff;
   border: 1px solid #dee2e6; }
   .page-link:hover {
     z-index: 2;
-    color: #070707;
+    color: #0d0d0d;
     text-decoration: none;
     background-color: #ebebeb;
     border-color: #dee2e6; }
@@ -8246,7 +8246,7 @@ input[readonly] {
     display: block;
     text-decoration: none; }
     .order-summary-m .card-body .link {
-      color: #2d2d2d; }
+      color: #333333; }
 
 @media (max-width: 991.98px) {
   .order-summary-d {
@@ -8333,7 +8333,7 @@ input[readonly] {
     .desktop-right-menu-items > ul li {
       float: left; }
       .desktop-right-menu-items > ul li a, .desktop-right-menu-items > ul li .fa {
-        color: #2d2d2d !important; }
+        color: #333333 !important; }
     .desktop-right-menu-items > ul .btn {
       background: transparent; }
   .desktop-right-menu-items .dropdown-toggle::after {
@@ -8378,12 +8378,12 @@ input[readonly] {
     font-size: 50px;
     font-style: italic;
     letter-spacing: 4px;
-    color: #2d2d2d; }
+    color: #333333; }
   #homepageCarousel .carousel-caption a.btn {
-    border: 2px solid #2d2d2d;
+    border: 2px solid #333333;
     background-color: transparent;
     border-radius: 0px;
-    color: #2d2d2d;
+    color: #333333;
     padding: 12px;
     font-size: 13px;
     font-weight: bold;
@@ -8392,7 +8392,7 @@ input[readonly] {
     -webkit-transition: 0.2s all;
     transition: 0.2s all; }
   #homepageCarousel .carousel-caption a.btn:hover {
-    background-color: #2d2d2d !important;
+    background-color: #333333 !important;
     color: #eeeeee !important; }
 
 #header-cart .fa-layers-counter {
@@ -8435,3 +8435,49 @@ input[readonly] {
     .home-usps .home-usps-each h4 {
       font-family: 'Playfair Display', serif;
       font-size: 19px; }
+
+footer {
+  background-color: #333333; }
+  footer .social-footer {
+    background-color: #fff;
+    padding: 30px 15px 20px 15px; }
+    footer .social-footer address {
+      font-weight: lighter;
+      color: darkgrey;
+      font-size: 12px;
+      margin-top: 15px; }
+    footer .social-footer .list-social {
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center; }
+      footer .social-footer .list-social .nav-item.px-1 {
+        -webkit-transition: 0.3s all;
+        transition: 0.3s all;
+        border: 1px solid lightgrey;
+        border-radius: 100%;
+        margin: 0px 5px;
+        width: 42px;
+        height: 42px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center; }
+        footer .social-footer .list-social .nav-item.px-1 .svg-inline--fa {
+          color: #9e9e9e;
+          padding: 6px;
+          -webkit-transition: 0.3s all;
+          transition: 0.3s all; }
+        footer .social-footer .list-social .nav-item.px-1 .fa-facebook-f {
+          padding: 4px; }
+
+.nav-item.px-1:hover {
+  background-color: #bd9a32 !important;
+  border-color: #bd9a32 !important; }
+
+.nav-item.px-1:hover .svg-inline--fa {
+  color: white !important; }
