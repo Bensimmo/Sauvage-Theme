@@ -1,154 +1,96 @@
-
-[%if [@config:show_home_ads@]%]
-</div>
-</div>
-	<div class="hidden-xs banner container-fluid">
-		[%advert type:'text' template:'carousel' limit:'10' ad_group:'home-banner'%]
-			[%param *header%]
-				<section id="homepageCarousel" class="carousel slide" aria-label="Banner Images">
-					[%if [@total_showing@] > 1%]
-						<ol class="carousel-indicators">
-							[%site_value id:'counter' type:'load'/%]
-						</ol>
-					[%/if%]
-					<div class="carousel-inner">
-			[%/param%]
-			[%param *footer%]
-					</div>
-					[%if [@total_showing@] > 1%]
-						<a class="left carousel-control" href="#homepageCarousel" data-slide="prev">
-							<span class="fa fa-chevron-left"></span>
-						</a>
-						<a class="right carousel-control" href="#homepageCarousel" data-slide="next">
-							<span class="fa fa-chevron-right"></span>
-						</a>
-					[%/if%]
-				</section>
-			[%/param%]
-			[%param *ifempty%]
-				<a class="neto-placeholder neto-placeholder-rotator btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>" href="[@config:home_url@]/_cpanel?item=adw&page=view&id=New&plan_id=1">
-					Click to add a banner<br/>
-				</a>
-			[%/param%]
-		[%/advert%]
 	</div>
-<div id="main-content" class="container" [%if [@config:current_page_type@] eq 'product'%]role="main"[%/if%]>
+</div>
+<div class="container-fluid">
 	<div class="row">
-[%/if%]
-<section class="row category-images" aria-label="Category Adverts">
-	[%advert type:'text' limit:'1' template:'home-category-left' ad_group:'home-category-left' sortby:'sortoder'%]
-		[%param *header%]
-			<div class="col-xs-12 col-sm-6 category-images">
-				<div class="row">
-		[%/param%]
-		[%param *footer%]
-				</div>
-			</div>
-		[%/param%]
-	[%/advert%]
-	[%advert type:'text' limit:'2' template:'home-category-right' ad_group:'home-category-right' sortby:'sortoder'%]
-		[%param *header%]
-			<div class="col-xs-12 col-sm-6 category-images">
-				<div class="row">
-		[%/param%]
-		[%param *footer%]
-				</div>
-			</div>
-		[%/param%]
-	[%/advert%]
-</section>
-[%advert type:'product' limit:'8' template:'' allow_duplicate:'1' category:'0' ad_group:'featured-products'%]
-	[%param *header%]
-		<section class="row row-padded" aria-label="Featured Products">
-			<h3 class="margin-center-headings text-left heading-underline">Featured Products</h3>
-			<div class="autoplay" aria-label="Featured Products">
-	[%/param%]
-	[%param footer%]
-			</div>
-		</section>
-	[%/param%]
-	[%param *ifempty%]
-		[%random_products category:'0' template:'' limit:'8'%]
-			[%param *header%]
-				<hr />
-				<section class="row" aria-label="Featured Products">
-			[%/param%]
-			[%param *footer%]
-				</section>
-			[%/param%]
-		[%/random_products%]
-	[%/param%]
-[%/advert%]
-[%advert type:'text' limit:'2' template:'home-middle-adverts' ad_group:'home-middle-adverts' sortby:'sortoder'%]
-	[%param *header%]
-	<section class="row row-padded" aria-label="Home Adverts">
-		<div class="col-xs-12 margin-bottom-adverts">
-			<div class="row">
-	[%/param%]
-	[%param *footer%]
-			</div>
+		<div class="col-xs-12">
+			[%if [@config:show_home_ads@]%]
+				[%advert type:'text' template:'carousel' limit:'10' ad_group:''%]
+					[%param *header%]
+						<section id="homepageCarousel" class="carousel slide" data-ride="carousel" aria-label="Banner images">
+							[%if [@total_showing@] > 1%]
+								<ol class="carousel-indicators">
+									[%site_value id:'counter' type:'load'/%]
+								</ol>
+							[%/if%]
+							<div class="carousel-inner">
+					[%/param%]
+					[%param *footer%]
+							</div>
+							[%if [@total_showing@] > 1%]
+								<a class="carousel-control-prev" href="#homepageCarousel" role="button" data-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="carousel-control-next" href="#homepageCarousel" role="button" data-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							[%/if%]
+						</section>
+					[%/param%]
+					[%param *ifempty%]
+						<a class="neto-placeholder neto-placeholder-rotator btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>" href="[@config:home_url@]/_cpanel?item=adw&page=view&id=New&plan_id=1">
+							Click to add a banner<br/>
+						</a>
+					[%/param%]
+				[%/advert%]
+			[%/if%]
 		</div>
-	</section>
-	[%/param%]
-[%/advert%]
-[%list type:'content' filter:'content_type=brand' limit:'10' sort:'sortorder'%]
-	[%param *header%]
-	<section class="row row-padded" aria-label="Brands">
-        <h3 class="margin-center-headings text-left heading-underline">Our Brands</h3>
-        <div class="autoplay-brands">
-	[%/param%]
-	[%param *body%]
-	<div class="col-xs-6 col-md-2 brands-wrapper">
-		<a href="[@URL@]"><img class="img-responsive block-center" src="[%ASSET_URL type:'content' id:'[@content_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%/param%][%/ASSET_URL%]" alt="[@content_name@]"/></a>
 	</div>
-		
-	[%/param%]
-	[%param *footer%]
-			</div>
-		</section>
-    [%/param%]
-[%/list%]
-[%advert type:'product' limit:'8' template:'' allow_duplicate:'1' category:'0' ad_group:'featured-products'%]
-	[%param *header%]
-		<section class="row row-padded" aria-label="Sale">
-			<h3 class="margin-center-headings text-left heading-underline">On Sale</h3>
-			<div class="autoplay" aria-label="Sale">
-	[%/param%]
-	[%param footer%]
-			</div>
-		</section>
-	[%/param%]
-	[%param *ifempty%]
-		[%random_products category:'0' template:'' limit:'8'%]
-			[%param *header%]
-				<hr />
-				<section class="row" aria-label="Featured Products">
-			[%/param%]
-			[%param *footer%]
-				</section>
-			[%/param%]
-		[%/random_products%]
-	[%/param%]
-[%/advert%]
-
-<section id="homepage-content" class="n-responsive-content" aria-label="Main Description">[@page_content@]</section>
-[%list type:'content' filter:'content_type=testimonials' limit:'10'%]
-	[%param *header%]
-	<section class="row row-padded" aria-label="Testimonials">
-	<h3 class="margin-center-headings text-left heading-underline">Happy Customers</h3>
-        <div class="margin-center-headings  row autoplay-testimonials">
-    [%/param%]
-    [%param *body%]
-        <div class="col-sm-4 testimonial">
-            <blockquote>
-                <p>[@content_description1@]</p>
-                <footer>[@content_short_description1@]</footer>
-            </blockquote>
-        </div>
-    [%/param%]
-    [%param *footer%]
-		</div>
-	</section>
-    [%/param%]
-[%/list%]
 </div>
+<div id="main-content" class="container" role="main">
+	<div class="row">
+		<div class="col-12 col-sm-6 col-md-4 homepage-content">
+			<section id="homepage-content" class="n-responsive-content" aria-label="Main description">[@page_content@]</section>
+
+		</div>
+		<div class="col-12 col-sm-6 col-md-8 home-usps">
+			[%advert type:'text' limit:'3' template:'home-usps' ad_group:'usps-home' sortby:'sortoder'%]
+				[%param *header%]
+				[%/param%]
+				[%param *footer%]
+				[%/param%]
+			[%/advert%]
+		</div>
+		<div class="col-12">
+			[%if [@config:show_home_ads@]%]
+				[%advert type:'product' limit:'8' template:'' ad_group:''%]
+					[%param *header%]
+						<hr aria-hidden="true"/>
+						<h2 class="sr-only">Featured products</h2>
+						<section class="row products-row" aria-label="Featured products">
+					[%/param%]
+					[%param footer%]
+						</section>
+					[%/param%]
+					[%param *ifempty%]
+						[%random_products filter_category:'' template:'' limit:'8'%]
+							[%param *header%]
+								<hr aria-hidden="true"/>
+								<h2 class="sr-only">Featured products</h2>
+								<section class="row products-row" aria-label="Featured products">
+							[%/param%]
+							[%param *footer%]
+								</section>
+							[%/param%]
+						[%/random_products%]
+					[%/param%]
+				[%/advert%]
+			[%/if%]
+		</div>
+	[%list type:'content' filter:'content_type=testimonials' limit:'10'%]
+		[%param *header%]
+		<div class="col align-self-center autoplay-testimonials">
+		[%/param%]
+		[%param *body%]
+				<div class="text-center">
+					<div class="testimonial-quote"><i class="fal fa-quote-right"></i></div>
+					<p class="customer-testimonial">[@content_description1@]</p>
+					<p class="customer-name">[@content_short_description1@]   <span>/</span> </p>
+					<small> Happy Customer</small>
+				</div>
+		[%/param%]
+		[%param *footer%]
+			</div>
+		[%/param%]
+	[%/list%]

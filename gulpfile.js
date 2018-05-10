@@ -1,21 +1,47 @@
-var gulp = require('gulp');
-var less = require('gulp-less');
 var path = require('path');
 var fs = require('fs');
+var gulp = require('gulp');
+var postcss = require('gulp-postcss');
+var cssnext = require('postcss-cssnext');
+var sass = require('gulp-sass');
+var sftp = require('gulp-sftp');
 
-gulp.task('less', function () {
-	fs.stat('./src/css/app.less', function(err, stat) {
-		if(err != null) {
-			console.log('Error:' + err.code);
-		}
-	});
-	gulp.src('./src/css/app.less')
-	.pipe(less({
-		paths: [ path.join(__dirname, 'less', 'includes') ]
-	}))
-	.pipe(gulp.dest('./src/css/'));
+
+var config = {};
+config.src = './src';
+config.JS = config.src + '/js';
+config.SCSS = config.src + '/scss';
+config.CSS = config.src + '/css';
+
+// Compile SASS into CSS
+gulp.task('sass', function() {
+	var plugins = [ cssnext ];
+	return gulp.src(config.SCSS +'/*.scss')
+		.pipe(sass())
+		.pipe(postcss(plugins))
+		.pipe(gulp.dest(config.CSS))
 });
 
-gulp.task('default', function () {
-	gulp.watch('./src/css/*.less', ['less']);
+// Watch and upload to SFTP
+gulp.task('sftp', function () {
+    return gulp.src('src/*')
+        .pipe(sftp({
+            host: 'sftp.neto.net.au',
+            user: 'sauvagetheme-ben',
+			pass: 'aGzX3kKDdKUssQeC',
+			port: '2022',
+			remotePath: 'httpdocs/assets/themes/sauvage-b4'
+        }));
 });
+// Move the javascript files into our /src/js folder
+gulp.task('js', function() {
+	return gulp.src(['node_modules/bootstrap/dist/js/bootstrap.min.js', 'node_modules/popper.js/dist/umd/popper.min.js'])
+		.pipe(gulp.dest(config.JS))
+});
+
+// Watches scss files
+gulp.task('watch', ['sass'],  function() {
+	gulp.watch([config.SCSS + '/*.scss', config.SCSS + '/_*.scss'], ['sass']);
+});
+
+gulp.task('default', ['watch']);
