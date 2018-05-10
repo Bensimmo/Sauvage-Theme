@@ -78,3 +78,19 @@
 				[%/advert%]
 			[%/if%]
 		</div>
+	[%list type:'content' filter:'content_type=testimonials' limit:'10'%]
+		[%param *header%]
+		<div class="col align-self-center autoplay-testimonials">
+		[%/param%]
+		[%param *body%]
+				<div class="text-center">
+					<div class="testimonial-quote"><i class="fal fa-quote-right"></i></div>
+					<p class="customer-testimonial">[@content_description1@]</p>
+					<p class="customer-name">[@content_short_description1@]   <span>/</span> </p>
+					<small> Happy Customer</small>
+				</div>
+		[%/param%]
+		[%param *footer%]
+			</div>
+		[%/param%]
+	[%/list%]
