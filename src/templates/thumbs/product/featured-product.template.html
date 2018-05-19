@@ -1,0 +1,59 @@
+[%CACHE type:'gallery' id:'[@inventory_id@]'%]
+<article class="col-12 featured-product" role="article" aria-label="Product thumbnail">
+	
+		<meta itemprop="brand" content="[@brand@]"/>
+		<meta itemprop="mpn" content="[@sku@]"/>
+		<div class="productInformation-wrapper pull-left">
+			<p class="h4" itemprop="name"><a href="[@URL@]">[%format type:'text' truemaxlength:'50' rmhtml:'1'%][@model@][%/FORMAT%]</a></p>
+			<p class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer" aria-label="[@model@] price">
+				[%if [@inpromo@]%]
+					Now&nbsp;[%if [@has_child@]%]from&nbsp;[%/if%]
+					<meta itemprop="priceValidUntil" content="[%format type:'date' format:'#Y-#M-#d'%][@promo_end@][%END format%]"/>
+					<span itemprop="price" content="[@promo_price@]">[%format type:'currency'%][@promo_price@][%/format%]</span>
+				[%else%]
+					[%if [@has_child@]%]From&nbsp;[%/if%]
+					<span itemprop="price" content="[@store_price@]">[%format type:'currency'%][@store_price@][%/format%]</span>
+				[%/if%]
+				<meta itemprop="priceCurrency" content="[@config:defaultcurrency@]">
+			</p>
+			<p class="short-description">
+					[@short_description@]
+			</p>
+			<form class="form-inline buying-options">
+				<input type="hidden" id="sku[@rndm@][@sku@]" name="sku[@rndm@][@sku@]" value="[@sku@]">
+				<input type="hidden" id="model[@rndm@][@sku@]" name="model[@rndm@][@sku@]" value="[@model@]">
+				<input type="hidden" id="thumb[@rndm@][@sku@]" name="thumb[@rndm@][@sku@]" value="[@thumb@]">
+				<input type="hidden" id="qty[@rndm@][@sku@]" name="qty[@rndm@][@sku@]" value="[%if [@min_qty@] > 0%][@min_qty@][%else%]1[%/if%]" placeholder="Qty" class="input-tiny">
+				[%if [@extra@] or [@has_child@] %]
+					<a href="[@URL@]" title="Buying Options" class="btn btn-primary btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">See Buying Options</a>
+				[%elseif [@store_quantity@] > 0 AND [@preorder@] %]
+					<button type="button" title="Pre-Order Now!" class="addtocart btn btn-warning btn-loads" rel="[@rndm@][@sku@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Pre-Order</button>
+				[%elseif [@store_quantity@] > 0 AND ![@preorder@] %]
+					<button type="button" title="Add to Cart" class="addtocart btn-primary btn btn-loads" rel="[@rndm@][@sku@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Add to Cart</button>
+				[%elseif [@store_quantity@] < 1 AND [@config:ALLOW_NOSTOCK_CHECKOUT@] %]
+					<button type="button" title="Add to Cart" class="addtocart btn-primary btn btn-loads" rel="[@rndm@][@sku@]" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Backorder</button>
+				[%elseif%]
+					<a class="notify_popup btn btn-default btn-block btn-loads" href="[@url@]" title="Notify Me When Back In Stock" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>">Out Of Stock</a>
+				[%/if%]
+				[%if [@config:show_wishlist@]%]
+				<span class="product-wishlist">
+					[%in_wishlist id:'[@SKU@]' %]
+					[%param if_true%]
+						<a class="wishlist_toggle btn btn-lg btn-block btn-warning" rel="[@SKU@]"><span class="remove" rel="wishlist_text[@SKU@]"><i class="fas fa-heart"></i></span></a>
+					[%/param%]
+					[%param if_false%]
+						<a class="wishlist_toggle btn btn-default btn-lg btn-block" rel="[@SKU@]"><span class="add" rel="wishlist_text[@SKU@]"><i class="fal fa-heart"></i></span></a>
+					[%/param%]
+					[%/in_wishlist%]
+				</span>
+			[%/if%]
+			</form>
+			[%if [@form:disable_scripts@] ne 'true'%][%tracking_code type:'Thumbnails' /%][%/if%]
+		</div>
+		[%advert type:'text' limit:'1' ad_group:'product-of-the-day-image' sortby:'sortoder'%]
+		[%param% *body%]
+		<a href="[@URL@]" class="productImage" style="background-image:url([%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%]);"></a>
+		[%/param%]
+		[/%advert%]
+</article>
+[%/CACHE%]
