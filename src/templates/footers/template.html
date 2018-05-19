@@ -235,6 +235,7 @@
 </footer>
 <!-- Required Neto Scripts - DO NOT REMOVE -->
 [%load_template file:'footers/includes/scripts.template.html'/%]
+<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 <script type="text/javascript" src="[%ntheme_asset%]js/fontawesome-all.min.js[%/ntheme_asset%]"></script>
 <script type="text/javascript" src="[%ntheme_asset%]js/fa-v4-shims.min.js[%/ntheme_asset%]"></script>
 <script type="text/javascript" src="[%ntheme_asset%]js/slick.min.js[%/ntheme_asset%]"></script>
@@ -249,6 +250,24 @@ $('.autoplay-testimonials').slick({
 	prevArrow: '<a href="javascript:void(0)" class="slick-arrow prev"><i class="fal fa-chevron-left"></i></a>',
 	nextArrow: '<a href="javascript:void(0)" class="slick-arrow next"><i class="fal fa-chevron-right"></i></a>'
 });
+</script>
+
+<script>
+window.sr = ScrollReveal({
+	duration: 500,
+	delay: 500,
+
+		});
+	sr.reveal('.carousel-caption', { delay: 1 });
+	sr.reveal('#homepage-content');
+	sr.reveal('.home-usps-each');
+	sr.reveal('.right-categories');
+	sr.reveal('.left-categories');
+	sr.reveal('.featured-product-wrapper');
+	sr.reveal('.autoplay-testimonials ');
+	
+
+	
 </script>
 </body>
 </html>

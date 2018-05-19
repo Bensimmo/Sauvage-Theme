@@ -52,29 +52,38 @@
 				[%/param%]
 			[%/advert%]
 		</div>
-		<div class="col-12">
+		<div class="col-12 col-sm-6">
+		[%advert type:'text' limit:'2' template:'left-categories' ad_group:'home-categories-left' sortby:'sortoder'%]
+			[%param *header%]
+			<div class="row category-left-wrapper">
+			[%/param%]
+			[%param *footer%]
+			</div>
+			[%/param%]
+		[%/advert%]
+		</div>
+		<div class="col-12 col-sm-6">
+		[%advert type:'text' limit:'2' template:'right-categories' ad_group:'home-categories-right' sortby:'sortoder'%]
+			[%param *header%]
+			<div class="row category-right-wrapper">
+			[%/param%]
+			[%param *footer%]
+			</div>
+			[%/param%]
+		[%/advert%]
+		</div>
+
+	
+		<div class="col-12 featured-product-wrapper">
 			[%if [@config:show_home_ads@]%]
-				[%advert type:'product' limit:'8' template:'' ad_group:''%]
+				[%advert type:'product' limit:'1' template:'featured-product' ad_group:'product-of-the-day'%]
 					[%param *header%]
-						<hr aria-hidden="true"/>
-						<h2 class="sr-only">Featured products</h2>
-						<section class="row products-row" aria-label="Featured products">
+					<h2>Deal of the day</h2>
 					[%/param%]
 					[%param footer%]
-						</section>
+					
 					[%/param%]
-					[%param *ifempty%]
-						[%random_products filter_category:'' template:'' limit:'8'%]
-							[%param *header%]
-								<hr aria-hidden="true"/>
-								<h2 class="sr-only">Featured products</h2>
-								<section class="row products-row" aria-label="Featured products">
-							[%/param%]
-							[%param *footer%]
-								</section>
-							[%/param%]
-						[%/random_products%]
-					[%/param%]
+
 				[%/advert%]
 			[%/if%]
 		</div>

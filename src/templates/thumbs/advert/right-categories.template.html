@@ -1,0 +1,16 @@
+<div alt="[@headline@]" class="col-12 right-categories" style="background-image:url([%asset_url type:'adw' id:'[@ad_id@]'%][%param default%][%cdn_asset html:'0' library:'images'%]default_product.gif[%/cdn_asset%][%end param%][%/asset_url%])">
+  
+        <div class="overlay">
+            [%if [@headline@] or [@description@] or [@linktext@]%]
+                <h2>[@headline@]</h2>
+                <!-- [%if [@description@]%]<p>[@description@]</p>[%/if%] -->
+
+                [%if [@linktext@]%]
+                <a class="view-products" href="[@url@]">[@linktext@]
+                    <i class="fal fa-arrow-circle-right"></i>
+                </a>
+                [%/if%] 
+            [%/if%]
+        </div>
+    
+</div>
