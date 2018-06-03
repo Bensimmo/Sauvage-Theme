@@ -1,5 +1,12 @@
 	</div>
 </div>
+<div class="instafeed-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div id="instafeed"></div>
+		</div>
+	</div>
+</div>
 <footer class="wrapper-footer">
 	<div class="container">
 		<div class="row">
@@ -192,12 +199,6 @@
 	
 	<div class="container-fluid social-footer">
 			<ul class="nav list-social text-center pt-2" itemscope itemtype="http://schema.org/Organization" role="contentinfo" aria-label="Social media">
-				<meta itemprop="url" content="[@config:home_url@]"/>
-				<meta itemprop="logo" content="[@config:home_url@][@config:imageurl@]/website_logo.png"/>
-				<meta itemprop="name" content="[@config:company_name@]"/>
-				<!-- [%if [@CONFIG:COMPANY_EMAIL@]%%]
-				<li class="nav-item px-1"><a href="[%url type:'page' id:'contact_us'/%]" target="_blank" title="Email us" rel="noopener" aria-label="Email us"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-				[%/if%] -->
 				[%if [@config:facebook_account_id@]%]
 				<li class="nav-item px-1"><a itemprop="sameAs" href="[@config:facebook_account_id@]" target="_blank" title="[@config:company_name@] on Facebook" rel="noopener"><i class="fa fa-lg fa-facebook text-facebook" aria-hidden="true"></i><span class="sr-only">Facebook</span></a></li>
 				[%/if%]
@@ -239,35 +240,78 @@
 <script type="text/javascript" src="[%ntheme_asset%]js/fontawesome-all.min.js[%/ntheme_asset%]"></script>
 <script type="text/javascript" src="[%ntheme_asset%]js/fa-v4-shims.min.js[%/ntheme_asset%]"></script>
 <script type="text/javascript" src="[%ntheme_asset%]js/slick.min.js[%/ntheme_asset%]"></script>
-<script>
+<script type="text/javascript" src="[%ntheme_asset%]js/instafeed.min.js[%/ntheme_asset%]"></script>
+
+
+<!-- Slick Carousel Script -->
+<script type="text/javascript">
 $('.autoplay-testimonials').slick({
 	slidesToShow: 1,
 	dots:true,
 	slidesToScroll: 1,
-	autoplay: false,
-	autoplaySpeed: 5000,
+	autoplay: true,
+	autoplaySpeed: 10000,
 	arrows:true,
 	prevArrow: '<a href="javascript:void(0)" class="slick-arrow prev"><i class="fal fa-chevron-left"></i></a>',
 	nextArrow: '<a href="javascript:void(0)" class="slick-arrow next"><i class="fal fa-chevron-right"></i></a>'
 });
 </script>
 
-<script>
+<!-- Element Fade In Script -->
+<script type="text/javascript">
 window.sr = ScrollReveal({
 	duration: 500,
-	delay: 500,
-
 		});
-	sr.reveal('.carousel-caption', { delay: 1 });
+	
 	sr.reveal('#homepage-content');
 	sr.reveal('.home-usps-each');
 	sr.reveal('.right-categories');
 	sr.reveal('.left-categories');
 	sr.reveal('.featured-product-wrapper');
 	sr.reveal('.autoplay-testimonials ');
+	sr.reveal('#instafeed');
 	
+$(document).ready(function() {
+	$(".carousel-caption").removeClass("hidden");
+	sr.reveal('.carousel-caption', { delay: 1 });
+});
+	
+</script>
 
+<!-- Mobile Slide Out Nav Script -->
+<script type="text/javascript">
+	function openNav() {
+		document.getElementById("mobSidenav").style.left = "0";
+		$('body').addClass('active');
+	}
 	
+	
+	$(document).click(function(e) {
+		if (!$(e.target).closest('#mobSidenav, .navbar-toggler').length) {
+			document.getElementById("mobSidenav").style.left = "-100%";
+			$('body').removeClass('active');
+		}
+	})
+	
+</script>
+<!-- Instagram Feed -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		var userFeed = new Instafeed({
+			get: 'user',
+			userId: '[@CONFIG:instagram_user_id@]',
+			accessToken: '[@CONFIG:instagram_access_token@]',
+			template: '<a href="{{link}}" title="{{caption}}" target="_blank" class="col-6 col-sm-2"><div class="instagram-img-wrapper" style="background-image:url({{image}});"><span class="likes"><i class="fas fa-heart"></i> {{likes}}</span></div></a>',
+			resolution: 'standard_resolution',
+			limit: '6',
+			sortBy: 'most-recent'
+		});
+		userFeed.run();
+	});
+	
+	$(window).load(function(){
+		$(".instagram-img-wrapper:odd").css("margin-top","20px");
+	});
 </script>
 </body>
 </html>

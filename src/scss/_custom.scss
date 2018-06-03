@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,600|Roboto:300,400,700');
 
 
+#main-content{
+    padding-top: 90px;
+}
+
+#n_home #main-content{
+    padding-top: 0px;
+}
 .desktop-right-menu-items{
     display: flex;
     justify-content: center;
@@ -18,13 +25,17 @@
             a, .fa{
                 color: #333333 !important;
             }
+            a:hover, .btn:hover, .fa:hover,
+            a:focus, .btn:focus, .fa:focus{
+                color: #d8b03b !important;
+            }
         }
         .btn{
             background: transparent;
         }
     }
     .dropdown-toggle::after{
-        display: none;
+        display: none !important;
     }
 }  
 
@@ -36,15 +47,161 @@
 }
 
 
+// Cart Item's Number Indicator
+.fa-layers-counter {
+    background-color: #d8b03b;
+    right: -11px;
+    top: -9px;
+    -webkit-transform: scale(.75);
+    transform: scale(0.75);
+    font-weight: lighter;
+}
+
+// Cart Dropdown 
+
+#neto-dropdown .small{
+    font-size: 12px;
+    font-weight: lighter;
+}
+.navbar-expand-md .navbar-nav .nav-link{
+    transition: 0.2s all;
+}
+.navbar-expand-md .navbar-nav .nav-link:hover,
+.navbar-expand-md .navbar-nav .nav-link:focus{
+    color: #d8b03b; 
+}
+
+.desktop-menu-items{
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 1;
+}
 
 .container-fluid.wrapper-header{
     position: fixed;
-    z-index: 99;
+    z-index: 1;
     background: transparent;
     transition: 0.3s ease;
-    li.nav-item{
-        font-size: 12px;
+    .desktop-menu-items{
+        display: flex;
+        flex-basis: auto;
+        flex-grow: 1;
+        li.nav-item{
+            font-size: 12px;
+            font-weight: lighter;
+            padding-right: 10px;
+        }
     }
+
+}
+
+// Mobile Nav
+
+.mobile-nav-inner-wrapper{
+    width: 100%;
+    height: inherit;
+    form{
+        width: 100%;
+    }
+    .navbar-nav ul{
+        list-style: none;
+        padding: 0px;
+    }
+    .navbar-nav ul a.dropdown-item{
+        font-size: 14px;
+        font-weight: lighter;
+        padding: 8px 20px;
+    }
+    .navbar-nav .nav-link {
+        font-weight: lighter;
+        font-size: 17px;
+        padding: 14px 20px;
+        text-transform: uppercase;
+    }
+    .form-control.ajax_search{
+        border: none;
+        border-bottom: 1px solid lightgray;
+        background-color: transparent;
+        font-weight: lighter;
+        padding-left: 20px;
+        height: 59px;
+        color: #8a8f93;
+        letter-spacing: 0.05em;
+    }
+     .input-group-append .btn {
+        background-color: transparent;
+        color: #3f4b57;
+        border-bottom: 1px solid lightgray;
+        padding: 6px 18px;
+    }
+    .third-level-ul{
+        background-color: #ececec;
+    }
+    a .fa-chevron-down,
+    a .fa-chevron-up,{
+        font-size: 17px;
+        float: right;
+    }
+    .dropdown-item:hover, .dropdown-item:focus,
+    .dropdown-item.active, .dropdown-item:active{
+        background: none;
+        color: #d8b03b;
+    }
+    ul.nav.list-social{
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+        padding: 25px 20px;
+        filter: grayscale(100%);
+         a{
+        font-size: 12px;
+        padding-right: 35px !important;
+       }
+    }
+    .content-links-mob a.nav-link{
+        text-transform: none;
+    }
+    .nsearchinput-pl.well{
+        margin-top: 59px !important;
+        a span{
+            font-weight: lighter;
+            font-size: 14px;
+        }
+    }
+}
+
+@media (max-width: 991px){
+    body.active:after {
+        content: "";
+        background: #484848e6;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+}
+// Slide Out Stylings
+.sidenav {
+    height: 100%;
+    width: 85%;
+    left: -100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    background-color: #f2f2f2;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding:0px;
+    border-radius: 0px !important;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 
 #homepageCarousel {
@@ -90,21 +247,6 @@
     }
 }
 
-#header-cart .fa-layers-counter {
-    background-color: #d8b03b;
-    right: -11px;
-    top: -9px;
-    -webkit-transform: scale(.75);
-    transform: scale(0.75);
-    font-weight: lighter;
-}
-
-.navbar-expand-md .navbar-nav .nav-link{
-    transition: 0.2s all;
-}
-.navbar-expand-md .navbar-nav .nav-link:hover{
-    color: #d8b03b; 
-}
 
 .n-responsive-content{
     padding: 100px 0px;
@@ -131,7 +273,51 @@
     }
 }
 
+
+// Footer
+
+.instafeed-wrapper{
+    margin-bottom: 100px;
+    #instafeed {
+        width: 100%;
+            a{
+                margin: 0;
+                position: relative;
+                display: block;
+                float: left;
+                padding: 0 1px 2px;
+                transition: all 0.3s ease;
+                text-decoration: none;
+            .instagram-img-wrapper{
+                width: 100%;
+                background-size: cover;
+                background-position: center;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                 span.likes{
+                    color: transparent;
+                    transition: 0.3s all;
+                    font-size: 30px;
+                }
+            }
+            .instagram-img-wrapper:hover span.likes{
+                color: white;
+            }
+            .instagram-img-wrapper:after {
+                content: "";
+                display: block;
+                padding-bottom: 100%;
+            }
+        }
+    }
+}
+
+
 footer{
+
     background-color: #333333;
     .container{
         padding-top: 50px;
@@ -217,6 +403,10 @@ footer{
 
 .autoplay-testimonials.slick-dotted.slick-slider{
     margin: 100px 0px;
+    .slick-track{
+        display: flex;
+        align-items: center;
+    }
     .slick-arrow {
         padding: 9.5px 19.5px 11.5px;
         position: absolute;
@@ -437,4 +627,105 @@ footer{
     }
 }
 
+// Mobile Styles
 
+@media (max-width:768px){
+
+    // Header Mobile
+    .wrapper-header {
+        .mobile-utility-links{
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .wrapper-logo{
+            padding: 0px 15px !important;
+        }
+       
+    }
+   
+
+    // Carousel Mobile 
+    #homepageCarousel {
+        .carousel-item{
+            height: 70vh;
+            .carousel-caption{
+                top: 30%;
+                width: auto;
+                left: 0%;
+                right: 0%;
+                bottom: 0%;
+                text-align: center;
+                padding: 0px 10px;
+            }
+        }
+        
+    }
+    .instafeed-wrapper{
+        margin-bottom: 0px;
+        .instagram-img-wrapper{
+            margin-top: 0px !important;
+        }
+    }
+    
+
+    .n-responsive-content{
+        text-align: center;
+        padding: 50px 0px;
+    }
+    .home-usps{
+        display: block !important;
+        margin-bottom: 50px;
+    }
+    .home-usps .home-usps-each {
+        padding: 20px 15px;
+    }
+   
+
+    .featured-product-wrapper .featured-product {
+        .productImage {
+            width: 100%;
+            position: absolute;
+            right: 0%;
+    
+        }
+        .productInformation-wrapper {
+            width: 350px;
+            position: absolute;
+            text-align: center;
+            left: auto;
+            top: 60%;
+        }
+        .form-inline.buying-options{
+            justify-content: center;
+        }
+    }
+    
+    .autoplay-testimonials.slick-dotted.slick-slider {
+        margin: 200px 0px 50px 0px;
+        .slick-slide{
+            padding: 0px 50px;
+        }
+    }
+   
+}
+
+
+@media(max-width:576px){
+    .row.category-left-wrapper{
+        margin-right: -15px;
+    }
+    .row.category-right-wrapper{
+        margin-top: 14px;
+    }
+    .col-12.left-categories,
+    .col-12.right-categories{
+        height: 50% !important;
+    }
+}
+// Extra Small Mobile
+
+@media(max-width:375px){
+    .featured-product-wrapper .featured-product .productInformation-wrapper{
+        width: 270px;
+    }
+}
